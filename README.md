@@ -201,18 +201,10 @@ Visit: `http://localhost:8000`
 ### 👑 Admin Account
 - **Email:** admin@digitaledge.com
 - **Password:** 123
-- **Role:** Admin (Full access to dashboard and API)
 
 ### 👤 Test User Account
 - **Email:** user@digitaledge.com
 - **Password:** 123
-- **Role:** User (Limited API access)
-
-> ⚠️ **Security Note:** Change these passwords immediately in production environments!
-
-## API Documentation
-
-Complete API documentation is available in [API_DOCUMENTATION.md](API_DOCUMENTATION.md)
 
 ### Quick Start
 
@@ -236,33 +228,119 @@ Import `Postman_Collection.json` into Postman for ready-to-use API requests.
 ## Project Structure
 
 ```
-ProjectDigitalEdge/
-├── app/
-│   ├── Exports/              # Excel export classes
-│   ├── Helpers/              # Helper classes (ActivityLogger)
-│   ├── Http/
-│   │   ├── Controllers/
-│   │   │   ├── Admin/        # Admin dashboard controllers
-│   │   │   └── Api/          # API controllers
-│   │   └── Middleware/
-│   ├── Models/               # Eloquent models
-│   └── Notifications/        # Notification classes
-├── database/
-│   ├── migrations/           # Database migrations
-│   └── seeders/              # Database seeders
-├── resources/
-│   ├── lang/                 # Language files (ar, en)
-│   └── views/
-│       ├── admin/            # Admin dashboard views
-│       ├── auth/             # Authentication views
-│       └── layouts/          # Layout templates
-├── routes/
-│   ├── api.php               # API routes
-│   └── web.php               # Web routes
-└── storage/
-    └── app/
-        └── public/
-            └── products/     # Product images
+├── 📁 app/
+│   ├── 📁 Exports/                    # Excel export classes
+│   │   ├── UsersExport.php            # Users data export
+│   │   └── ProductsExport.php         # Products data export
+│   ├── 📁 Helpers/                    # Helper utilities
+│   │   └── ActivityLogger.php         # Activity logging helper
+│   ├── 📁 Http/
+│   │   ├── 📁 Controllers/
+│   │   │   ├── 📁 Admin/              # Admin dashboard controllers
+│   │   │   │   ├── AdminController.php
+│   │   │   │   ├── UserController.php
+│   │   │   │   ├── ProductController.php
+│   │   │   │   ├── ActivityLogController.php
+│   │   │   │   └── NotificationController.php
+│   │   │   └── 📁 Api/                # API controllers
+│   │   │       ├── AuthController.php
+│   │   │       ├── UserController.php
+│   │   │       ├── ProductController.php
+│   │   │       ├── NotificationController.php
+│   │   │       ├── ActivityLogController.php
+│   │   │       ├── CountryController.php
+│   │   │       └── GalleryController.php
+│   │   ├── 📁 Middleware/             # Custom middleware
+│   │   └── 📁 Requests/               # Form request validation
+│   ├── 📁 Models/                     # Eloquent models
+│   │   ├── User.php
+│   │   ├── Product.php
+│   │   ├── Country.php
+│   │   ├── City.php
+│   │   ├── ActivityLog.php
+│   │   └── Gallery.php
+│   └── 📁 Notifications/              # Notification classes
+│       └── CustomNotification.php
+├── 📁 bootstrap/                      # Bootstrap files
+├── 📁 config/                         # Configuration files
+│   ├── app.php
+│   ├── database.php
+│   ├── auth.php
+│   ├── sanctum.php
+│   ├── broadcasting.php
+│   └── services.php
+├── 📁 database/
+│   ├── 📁 factories/                  # Model factories
+│   ├── 📁 migrations/                 # Database migrations
+│   │   ├── create_users_table.php
+│   │   ├── create_products_table.php
+│   │   ├── create_countries_table.php
+│   │   ├── create_cities_table.php
+│   │   ├── create_activity_logs_table.php
+│   │   └── create_notifications_table.php
+│   └── 📁 seeders/                    # Database seeders
+│       ├── DatabaseSeeder.php
+│       ├── RoleSeeder.php
+│       ├── UserSeeder.php
+│       ├── CountrySeeder.php
+│       └── CitySeeder.php
+├── 📁 public/                         # Public assets
+│   ├── 📁 css/                       # Compiled CSS
+│   ├── 📁 js/                        # Compiled JavaScript
+│   ├── 📁 images/                    # Static images
+│   └── index.php                     # Entry point
+├── 📁 resources/
+│   ├── 📁 css/                       # Source CSS files
+│   ├── 📁 js/                        # Source JavaScript files
+│   ├── 📁 lang/                      # Localization files
+│   │   ├── 📁 ar/                    # Arabic translations
+│   │   └── 📁 en/                    # English translations
+│   └── 📁 views/                     # Blade templates
+│       ├── 📁 admin/                 # Admin dashboard views
+│       │   ├── 📁 layouts/           # Admin layouts
+│       │   ├── 📁 users/             # User management views
+│       │   ├── 📁 products/          # Product management views
+│       │   ├── 📁 activity-logs/     # Activity logs views
+│       │   └── dashboard.blade.php   # Admin dashboard
+│       ├── 📁 auth/                  # Authentication views
+│       │   ├── login.blade.php
+│       │   ├── register.blade.php
+│       │   └── verify.blade.php
+│       ├── 📁 emails/                # Email templates
+│       │   └── verification-code.blade.php
+│       └── 📁 layouts/               # Main layouts
+│           ├── app.blade.php
+│           └── guest.blade.php
+├── 📁 routes/
+│   ├── api.php                       # API routes (Sanctum protected)
+│   ├── web.php                       # Web routes (Session based)
+│   ├── console.php                   # Artisan console routes
+│   └── channels.php                  # Broadcasting channels
+├── 📁 storage/
+│   ├── 📁 app/
+│   │   ├── 📁 public/               # Public storage (symlinked)
+│   │   │   ├── 📁 products/         # Product images
+│   │   │   └── 📁 gallery/          # Gallery images
+│   │   └── 📁 private/              # Private storage
+│   ├── 📁 framework/                # Framework storage
+│   ├── 📁 logs/                     # Application logs
+│   └── 📁 cache/                    # Cache files
+├── 📁 tests/                        # Test files
+├── 📁 vendor/                       # Composer dependencies
+├── 📄 .env                          # Environment configuration
+├── 📄 .env.example                  # Environment example
+├── 📄 .gitignore                    # Git ignore rules
+├── 📄 artisan                       # Artisan CLI
+├── 📄 composer.json                 # Composer configuration
+├── 📄 composer.lock                 # Composer lock file
+├── 📄 package.json                  # NPM configuration
+├── 📄 package-lock.json             # NPM lock file
+├── 📄 vite.config.js                # Vite configuration
+├── 📄 README.md                     # Project documentation
+├── 📄 Postman_Collection.json       # API testing collection
+└── 📄 phpunit.xml                   # PHPUnit configuration
+```
+
 ```
 
 ## API Endpoints Overview
@@ -475,16 +553,4 @@ For technical support, feature requests, or bug reports:
 4. Push to branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📄 License
 
-This project is proprietary and confidential. All rights reserved.
-
----
-
-## 🌟 About ProjectDigitalEdge
-
-**ProjectDigitalEdge** represents the cutting edge of modern web application development, combining robust backend architecture with intuitive user interfaces. Built with Laravel 11 and featuring real-time capabilities, this platform is designed to scale with your business needs.
-
-**Built with ❤️ using Laravel Framework**
-
-*Version 1.0.0 | Last Updated: November 2024*
