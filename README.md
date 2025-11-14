@@ -508,49 +508,12 @@ chmod -R 755 storage
 - Check token expiration
 - Ensure correct user role permissions
 
-## 📈 Performance Features
 
-- **Optimized Queries:** Eager loading and query optimization
-- **Caching:** Strategic caching for improved response times
-- **Pagination:** Built-in pagination for all list endpoints
-- **Rate Limiting:** Protection against API abuse
-- **Image Optimization:** Efficient file storage and serving
 
-## 🔒 Security Notes
 
-- ✅ Never commit `.env` file to version control
-- ✅ Change default passwords in production
-- ✅ Use HTTPS in production environments
-- ✅ Configure proper CORS settings
-- ✅ Set up rate limiting appropriately
-- ✅ Keep dependencies updated
-- ✅ Regular security audits recommended
 
-## 🚀 Deployment
 
-### Production Checklist
-- [ ] Update `.env` with production values
-- [ ] Set `APP_ENV=production` and `APP_DEBUG=false`
-- [ ] Configure proper database credentials
-- [ ] Set up SSL certificates
-- [ ] Configure web server (Apache/Nginx)
-- [ ] Set up proper file permissions
-- [ ] Configure email settings for notifications
-- [ ] Set up regular database backups
 
-## 📞 Support
 
-For technical support, feature requests, or bug reports:
-- 📧 Email: support@digitaledge.com
-- 📝 Create an issue in the repository
-- 📖 Check the documentation first
-
-## 🙏 Contributing
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 
